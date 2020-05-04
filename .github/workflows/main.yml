@@ -22,4 +22,4 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Lint project
-        run: golangci-lint run
+        run: golangci-lint run --out-format=github-actions
