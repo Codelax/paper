@@ -1,4 +1,4 @@
-package pathVariable
+package main
 
 import (
 	"fmt"
@@ -16,6 +16,6 @@ func testHandler(ctx paper.Context) {
 func main() {
 	r := paper.NewRouter()
 	r.AddMiddleware(middleware.Logger)
-	r.Add("/{id}", testHandler)
+	r.Add("/:id", testHandler)
 	log.Fatal(r.Serve(":1337"))
 }
