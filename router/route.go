@@ -17,7 +17,7 @@ type pathParser func (path string) []string
 func (router *Router) setupParamParser() {
 	var err error
 	if router.pathParamsRegex == nil {
-		router.pathParamsRegex, err = regexp.Compile(":([\\w\\d]+?)(\\W|$)")
+		router.pathParamsRegex, err = regexp.Compile(":([[:alnum:]]+)")
 		if err != nil {
 			log.Println(err)
 		}
@@ -28,7 +28,7 @@ func (router *Router) setupParamParser() {
 // path pattern (:id) are replaced by simple string regex
 func (router *Router) paramParser(pathDef string) pathParser {
 	router.setupParamParser()
-	pathDef = string(router.pathParamsRegex.ReplaceAll([]byte(pathDef), []byte("([\\S]+)")))
+	pathDef = string(router.pathParamsRegex.ReplaceAll([]byte(pathDef), []byte("([[:alnum:]]+)")))
 	pathDef = "^" + pathDef + "$"
 	pathRegex, err := regexp.Compile(pathDef)
 	if err != nil {
