@@ -14,6 +14,6 @@ func testHandler(ctx paper.Context) {
 func main() {
 	r := paper.NewRouter()
 	r.AddMiddleware(middleware.Logger)
-	r.Add("/", testHandler)
+	r.GET("/", testHandler)
 	log.Fatal(r.Serve(":1337"))
 }

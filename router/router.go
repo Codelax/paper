@@ -8,8 +8,8 @@ import (
 )
 
 type Router struct {
-	routes []Route
-	middlewares []Middleware
+	routes          []Route
+	middlewares     []Middleware
 	pathParamsRegex *regexp.Regexp
 }
 
@@ -21,13 +21,34 @@ func (router *Router) AddMiddleware(middleware Middleware) {
 	router.middlewares = append(router.middlewares, middleware)
 }
 
-func (router *Router) Add(path string, handler context.Handler) {
+func (router *Router) Add(method string, path string, handler context.Handler) {
 	var route = Route{
+		method:  method,
 		handler: handler,
 		parser:  router.paramParser(path),
 		params:  router.listParams(path),
 	}
 	router.routes = append(router.routes, route)
+}
+
+func (router *Router) GET(path string, handler context.Handler) {
+	router.Add(http.MethodGet, path, handler)
+}
+
+func (router *Router) POST(path string, handler context.Handler) {
+	router.Add(http.MethodPost, path, handler)
+}
+
+func (router *Router) PATCH(path string, handler context.Handler) {
+	router.Add(http.MethodPatch, path, handler)
+}
+
+func (router *Router) PUT(path string, handler context.Handler) {
+	router.Add(http.MethodPut, path, handler)
+}
+
+func (router *Router) DELETE(path string, handler context.Handler) {
+	router.Add(http.MethodDelete, path, handler)
 }
 
 func (router *Router) Serve(address string) error {

@@ -9,13 +9,14 @@ import (
 )
 
 func testHandler(ctx paper.Context) {
-	out := fmt.Sprintf("id : %s", ctx.Params["id"])
+	out := fmt.Sprintf("id : %s\n", ctx.Params["id"])
+
 	ctx.String(http.StatusOK, out)
 }
 
 func main() {
 	r := paper.NewRouter()
 	r.AddMiddleware(middleware.Logger)
-	r.Add("/:id", testHandler)
+	r.GET("/book/:id", testHandler)
 	log.Fatal(r.Serve(":1337"))
 }

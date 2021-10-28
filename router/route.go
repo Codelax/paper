@@ -7,6 +7,7 @@ import (
 )
 
 type Route struct {
+	method string
 	handler context.Handler
 	parser pathParser
 	params []string
