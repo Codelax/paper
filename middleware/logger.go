@@ -5,8 +5,8 @@ import (
 	"log"
 )
 
-func Logger(handler context.Handler) context.Handler {
-	return func(ctx context.Context) {
+func Logger(handler context.HandlerFunc) context.HandlerFunc {
+	return func(ctx *context.Context) {
 		log.Println(ctx.Request.Method, ":", ctx.Request.RequestURI)
 		handler(ctx)
 	}

@@ -7,7 +7,7 @@ import (
 	"net/http"
 )
 
-func testHandler(ctx paper.Context) {
+func testHandler(ctx *paper.Context) {
 	ctx.Respond(http.StatusOK)
 }
 

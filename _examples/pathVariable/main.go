@@ -8,7 +8,7 @@ import (
 	"net/http"
 )
 
-func testHandler(ctx paper.Context) {
+func testHandler(ctx *paper.Context) {
 	out := fmt.Sprintf("id : %s\n", ctx.Params["id"])
 
 	ctx.String(http.StatusOK, out)

@@ -9,7 +9,7 @@ import (
 
 type (
 	Context = context.Context
-	HandlerFunc = context.Handler
+	HandlerFunc = context.HandlerFunc
 	Router = router.Router
 	Middleware = router.Middleware
 )

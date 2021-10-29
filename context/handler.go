@@ -1,4 +1,4 @@
 package context
 
-type Handler func(Context)
+type HandlerFunc func(*Context)
 

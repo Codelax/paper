@@ -21,7 +21,7 @@ func (router *Router) AddMiddleware(middleware Middleware) {
 	router.middlewares = append(router.middlewares, middleware)
 }
 
-func (router *Router) Add(method string, path string, handler context.Handler) {
+func (router *Router) Add(method string, path string, handler context.HandlerFunc) {
 	var route = Route{
 		method:  method,
 		handler: handler,
@@ -31,23 +31,23 @@ func (router *Router) Add(method string, path string, handler context.Handler) {
 	router.routes = append(router.routes, route)
 }
 
-func (router *Router) GET(path string, handler context.Handler) {
+func (router *Router) GET(path string, handler context.HandlerFunc) {
 	router.Add(http.MethodGet, path, handler)
 }
 
-func (router *Router) POST(path string, handler context.Handler) {
+func (router *Router) POST(path string, handler context.HandlerFunc) {
 	router.Add(http.MethodPost, path, handler)
 }
 
-func (router *Router) PATCH(path string, handler context.Handler) {
+func (router *Router) PATCH(path string, handler context.HandlerFunc) {
 	router.Add(http.MethodPatch, path, handler)
 }
 
-func (router *Router) PUT(path string, handler context.Handler) {
+func (router *Router) PUT(path string, handler context.HandlerFunc) {
 	router.Add(http.MethodPut, path, handler)
 }
 
-func (router *Router) DELETE(path string, handler context.Handler) {
+func (router *Router) DELETE(path string, handler context.HandlerFunc) {
 	router.Add(http.MethodDelete, path, handler)
 }
 

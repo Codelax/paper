@@ -7,7 +7,7 @@ import (
 
 func (router *Router) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	var validRoute *Route
-	var ctx = context.Context{
+	var ctx = &context.Context{
 		Response: w,
 		Request:  r,
 		Params:   map[string]string{},
